@@ -25,6 +25,10 @@ public class Node {
     }
 
     public void setLeftChild(Node leftChild) throws WrongValueException {
+        if (leftChild == null) {
+            this.leftChild = null;
+            return;
+        }
         if (leftChild.data < this.data) {
             leftChild.parent = this;
             this.leftChild = leftChild;
@@ -38,6 +42,10 @@ public class Node {
     }
 
     public void setRightChild(Node rightChild) throws WrongValueException {
+        if (rightChild == null) {
+            this.rightChild = null;
+            return;
+        }
         if (rightChild.data > this.data) {
             rightChild.parent = this;
             this.rightChild = rightChild;

@@ -1,6 +1,7 @@
 package tree.operations;
 
 import exception.TreeOperationException;
+import exception.WrongValueException;
 import tree.Node;
 
 public class BinaryTreeOperations implements TreeOperations {
@@ -30,7 +31,29 @@ public class BinaryTreeOperations implements TreeOperations {
     }
 
     @Override
-    public void removeElement() {
-        // to be implemented
+    public void removeElement(Node element, Node root) throws WrongValueException {
+        Node left = element.getLeftChild();
+        Node right = element.getRightChild();
+        if (left == null && right == null) {
+            if (element.getParent().getLeftChild() == element) {
+                element.getParent().setLeftChild(null);
+            } else {
+                element.getParent().setRightChild(null);
+            }
+        } else if ((left != null && right == null)) {
+            if (element.getParent().getLeftChild() == element) {
+                element.getParent().setLeftChild(left);
+            } else {
+                element.getParent().setRightChild(left);
+            }
+        } else if (right != null && left == null) {
+            if (element.getParent().getLeftChild() == element) {
+                element.getParent().setLeftChild(right);
+            } else {
+                element.getParent().setRightChild(right);
+            }
+        } else {
+            // to be implemented
+        }
     }
 }
